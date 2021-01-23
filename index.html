@@ -27,7 +27,6 @@ body {font-size:16px;}
   'https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1077595836021329');
   fbq('track', 'PageView');
-  fbq('track', 'ViewContent');
 </script>
 
 <script>
@@ -51,7 +50,12 @@ body {font-size:16px;}
         scheduleOne();
       }, 2000 + Math.random() * 2 * 1000)
     }
-    scheduleOne();
+    if (Math.random() > 0.80) {
+      fbq('track', 'ViewContent');
+      scheduleOne();
+    } else {
+      fbq('track', 'Purchase', {value: Math.round(Math.random() * 1000) / 10, currency: 'USD'});
+    }
   })()
 </script>
 </head>
